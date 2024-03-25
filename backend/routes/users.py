@@ -7,7 +7,7 @@ from backend.dto.user_creation import UserCreationSchema
 from backend.entities.user import User
 from backend.routes import token_auth
 
-users_bp = Blueprint("users", __name__, url_prefix="/users")
+users_bp = Blueprint("users", __name__, url_prefix="/api/users")
 user_creation_schema = UserCreationSchema()
 
 

@@ -21,7 +21,9 @@ class UserCreationSchema(Schema):
 
     @validates("email")
     def validates_email(self, value):
-        if not re.match("[^^]+@[^@]+\.{^@]+", value):  # noqa: W605
+        if not re.match(
+            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", value  # noqa: W605
+        ):
             raise ValidationError("Invalid email format")
 
     @post_load

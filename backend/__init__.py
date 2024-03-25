@@ -25,6 +25,6 @@ def create_app():
     app.register_blueprint(health_bp)
     app.register_blueprint(users_bp)
     app.register_blueprint(error_bp)
-    app.register_blueprint(auth_bp)
+    app.register_blueprint(auth_bp, url_prefix="/api")
 
     return app
