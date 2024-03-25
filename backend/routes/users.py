@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 from backend import db
 from backend.dto.user_creation import UserCreationSchema
 from backend.entities.user import User
-from backend.routes import basic_auth, token_auth
+from backend.routes import token_auth
 
 users_bp = Blueprint("users", __name__, url_prefix="/users")
 user_creation_schema = UserCreationSchema()
@@ -58,5 +58,5 @@ def get_user(user_id):
     # u = User.query.filter(User.is == user_id).one()
 
     # style 2
-    user = db.session.scalars(select(User).where(user.id == user_id)).one()
+    user = db.session.scalars(select(User).where(User.id == user_id)).one()
     return jsonify({"id": user.id, "username": user.username})

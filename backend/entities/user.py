@@ -13,7 +13,7 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
-    country_id = db.Column(db.Integer, db.ForeignKey(Country.id))
+    country_id = db.Column(db.Integer, db.ForeignKey(Country.id))  # type: ignore
 
     country = relationship(Country.__name__)
     profile = relationship("Profile", uselist=False, back_populates="user")

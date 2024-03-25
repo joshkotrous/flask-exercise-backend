@@ -3,7 +3,7 @@ from sqlalchemy import delete
 from werkzeug.security import generate_password_hash
 
 from backend import create_app, db
-from backend.entities import Country, User
+from backend.entities.user import Country, User
 
 
 @pytest.fixture(scope="session")

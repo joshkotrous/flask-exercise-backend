@@ -1,5 +1,3 @@
-from flask import Response, jsonify, request
-
 from backend import create_app
 
 app = create_app()

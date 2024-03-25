@@ -26,7 +26,7 @@ def verify_basic_password(username, password):
 def verify_token(token):
     try:
         decoded_jwt = jwt.decode(token, secret_token, algorithms=["HS256"])
-    except Exception as e:
+    except Exception:
         return None
     if decoded_jwt["name"] in allowed_users:
         return decoded_jwt["name"]

@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash
 
 from backend import db
 from backend.entities.user import User
-from backend.routes import allowed_users, secret_token
+from backend.routes import secret_token
 
 auth_bp = Blueprint("auth", __name__)
 credentials_schema = CredentialsSchema()
