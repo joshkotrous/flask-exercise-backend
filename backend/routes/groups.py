@@ -4,7 +4,7 @@ from sqlalchemy import select
 
 from backend import db
 
-groups_bp = Blueprint("groups", __name__, url_prefix="/groups")
+groups_bp = Blueprint("groups", __name__, url_prefix="/api/groups")
 group_schema = GroupSchema()
 
 

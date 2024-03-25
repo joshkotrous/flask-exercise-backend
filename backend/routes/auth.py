@@ -9,7 +9,7 @@ from backend import db
 from backend.entities.user import User
 from backend.routes import secret_token
 
-auth_bp = Blueprint("auth", __name__)
+auth_bp = Blueprint("auth", __name__, url_prefix="/api")
 credentials_schema = CredentialsSchema()
 
 
