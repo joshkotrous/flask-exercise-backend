@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from backend.extensions import db
 from backend.routes.auth import auth_bp
@@ -10,10 +11,12 @@ from backend.routes.users import users_bp
 def create_app():
     app = Flask(__name__)
     app.debug = True
+    CORS(app)
 
     app.config[
         "SQLALCHEMY_DATABASE_URI"
     ] = "postgresql://postgres:password@localhost:5432/backenddb"
+    app.config["CORS_HEADERS"] = "Content-Type"
 
     db.app = app
     db.init_app(app)

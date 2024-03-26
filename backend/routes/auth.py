@@ -18,7 +18,7 @@ def login():
     d = request.json
     credentials = credentials_schema.load(d)
     user = db.session.scalars(
-        select(User).where(User.username == credentials.username)
+        select(User).where(User.email == credentials.username)
     ).one()
 
     if not check_password_hash(user.password, credentials.password):
@@ -28,4 +28,11 @@ def login():
         {"sub": user.id, "name": user.username}, secret_token, algorithm="HS256"
     )
 
-    return jsonify({"token": encoded_jwt})
+    return jsonify(
+        {
+            "token": encoded_jwt,
+            "userId": user.id,
+            "email": user.email,
+            "username": user.username,
+        }
+    )

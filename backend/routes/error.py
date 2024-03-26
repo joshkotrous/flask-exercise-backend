@@ -13,7 +13,7 @@ def handle_not_found(err):
 
 @error_bp.app_errorhandler(Exception)
 def handle_generic_exception(err):
-    # print(traceback.format.exc())
+    print(err)
     return (
         jsonify(
             {
