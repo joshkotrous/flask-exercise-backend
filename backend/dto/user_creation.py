@@ -7,8 +7,10 @@ from backend.entities.user import User
 
 class UserCreationSchema(Schema):
     username = fields.String(required=True)
-    password = fields.String(required=True)
+    password = fields.String(required=False)
     email = fields.String(required=True)
+    first_name = fields.String(required=False)
+    last_name = fields.String(required=False)
 
     @validates("password")
     def validates_password(self, value):

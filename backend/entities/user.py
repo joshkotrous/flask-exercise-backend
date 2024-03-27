@@ -12,6 +12,8 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    first_name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
 
     country_id = db.Column(db.Integer, db.ForeignKey(Country.id))  # type: ignore
 
