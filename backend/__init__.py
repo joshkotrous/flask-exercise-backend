@@ -5,7 +5,10 @@ from backend.extensions import db
 from backend.routes.auth import auth_bp
 from backend.routes.error import error_bp
 from backend.routes.health import health_bp
+from backend.routes.posts import posts_bp
 from backend.routes.users import users_bp
+
+# from backend.entities.groups import Group
 
 
 def create_app():
@@ -29,5 +32,6 @@ def create_app():
     app.register_blueprint(users_bp)
     app.register_blueprint(error_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(posts_bp)
 
     return app
