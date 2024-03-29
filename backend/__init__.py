@@ -8,8 +8,6 @@ from backend.routes.health import health_bp
 from backend.routes.posts import posts_bp
 from backend.routes.users import users_bp
 
-# from backend.entities.groups import Group
-
 
 def create_app():
     app = Flask(__name__)

@@ -5,7 +5,6 @@ from backend.entities.post import Post
 
 class PostCreationSchema(Schema):
     content = fields.String(required=True)
-    likes = fields.Integer()
     user_id = fields.Integer()
 
     @post_load

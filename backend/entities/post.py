@@ -9,6 +9,14 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     content = db.Column(db.String(500), nullable=False)
-    likes = db.Column(db.Integer, nullable=True)
+    likes = db.relationship("Like", lazy="dynamic")
+
+    @property
+    def like_count(self):
+        return self.likes.count()
+
+    # @property
+    def isLiked(self, user_id):
+        return self.likes.filter_by(user_id=user_id).first() is not None
 
     author = relationship(User, backref=backref("posts", lazy="dynamic"))
