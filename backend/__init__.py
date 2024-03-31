@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
 
+# from backend.entities.like import Like
+# from backend.entities.post import Post
 from backend.extensions import db
 from backend.routes.auth import auth_bp
 from backend.routes.error import error_bp

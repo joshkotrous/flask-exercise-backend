@@ -9,6 +9,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     content = db.Column(db.String(500), nullable=False)
+    attachments = db.Column(db.String(500), nullable=True)
     likes = db.relationship("Like", lazy="dynamic")
 
     @property

@@ -27,6 +27,7 @@ def get_all_posts(user_id):
                 "author": post.author.username,
                 "likes": post.like_count,
                 "content": post.content,
+                "attachments": post.attachments,
                 "is_liked": post.isLiked(user_id),
             }
             for post in posts
@@ -43,7 +44,11 @@ def create_post():
     new_post = post_creation_schema.load(d)
 
     db.session.execute(
-        insert(Post).values(user_id=new_post.user_id, content=new_post.content)
+        insert(Post).values(
+            user_id=new_post.user_id,
+            content=new_post.content,
+            attachments=new_post.attachments,
+        )
     )
     db.session.commit()
 
