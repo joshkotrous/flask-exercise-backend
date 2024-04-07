@@ -2,6 +2,9 @@ from flask import Blueprint, jsonify
 from marshmallow import ValidationError
 from werkzeug.exceptions import NotFound
 
+from backend.exceptions.invalid_password_error import InvalidPasswordError
+from backend.exceptions.invalid_username_error import InvalidUsernameError
+
 error_bp = Blueprint("errors", __name__)
 
 
@@ -29,3 +32,15 @@ def handle_generic_exception(err):
 def handle_invalid_data(error):
     print(error)
     return jsonify({"message": "Incorrect data format" + str(error)}), 400
+
+
+@error_bp.app_errorhandler(InvalidUsernameError)
+def handled_invalid_username(error):
+    print(error)
+    return jsonify({"message": str(error)}), 400
+
+
+@error_bp.app_errorhandler(InvalidPasswordError)
+def handled_invalid_password(error):
+    print(error)
+    return jsonify({"message": str(error)}), 400
