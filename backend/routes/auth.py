@@ -7,6 +7,8 @@ from werkzeug.security import check_password_hash
 
 from backend import db
 from backend.entities.user import User
+from backend.exceptions.invalid_password_error import InvalidPasswordError
+from backend.exceptions.invalid_username_error import InvalidUsernameError
 from backend.routes import secret_token
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api")
@@ -17,12 +19,16 @@ credentials_schema = CredentialsSchema()
 def login():
     d = request.json
     credentials = credentials_schema.load(d)
-    user = db.session.scalars(
-        select(User).where(User.email == credentials.username)
-    ).one()
+
+    try:
+        user = db.session.scalars(
+            select(User).where(User.email == credentials.username)
+        ).one()
+    except Exception:
+        raise InvalidUsernameError
 
     if not check_password_hash(user.password, credentials.password):
-        raise Exception("invalid password")
+        raise InvalidPasswordError
 
     encoded_jwt = jwt.encode(
         {"sub": user.id, "name": user.username}, secret_token, algorithm="HS256"
